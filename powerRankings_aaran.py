@@ -52,8 +52,9 @@ power_rankings = pd.DataFrame({
     'strength_score': coefficients
 })
 
-# Normalize scores (optional, but makes them easier to read)
-# power_rankings['strength_score'] = power_rankings['strength_score'] - power_rankings['strength_score'].mean()
+# Normalize scores (Mean-Zero Normalization)
+# This makes the scores independent of the reference team choice
+power_rankings['strength_score'] = power_rankings['strength_score'] - power_rankings['strength_score'].mean()
 
 power_rankings = power_rankings.sort_values(by='strength_score', ascending=False).reset_index(drop=True)
 power_rankings['rank'] = power_rankings.index + 1

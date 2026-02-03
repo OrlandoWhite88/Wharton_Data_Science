@@ -26,4 +26,8 @@ This script implements a **Bradley-Terry Logistic Regression** model to rank the
 1. **Game Aggregation**: Converts the raw row-level data into game-level outcomes (Home Win vs. Away Win).
 2. **Feature Engineering**: Creates a feature matrix where each row represents a game, with +1 for the home team and -1 for the away team.
 3. **Logistic Regression**: Fits a Logit model using `statsmodels` to estimate the relative strength ($\beta$) of each team.
-4. **Ranking**: Teams are ranked based on their estimated strength coefficients. Brazil was used as the reference team (coefficient 0).
+4. **Ranking**: Teams are ranked based on their estimated strength coefficients. 
+5. **Normalization**: To ensure the rankings are independent of the choice of reference team, we apply **Mean-Zero Normalization** to the final scores. This ensures that a team with a positive score is above average, and a negative score is below average.
+
+### **Bias Verification**
+We verified the model by running it with two different reference teams (Brazil and Vietnam). The resulting rankings and relative strength differences were identical (Correlation = 1.0), confirming the model's mathematical robustness against reference selection.
